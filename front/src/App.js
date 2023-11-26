@@ -1,5 +1,5 @@
 import { Fragment, useState } from 'react'
-import { BrowserRouter, Switch, Route, Routes} from "react-router-dom";
+import { BrowserRouter, Switch, Route, Routes } from "react-router-dom";
 
 import logo from './logo.svg';
 import { Dialog, Disclosure, Popover, Transition } from '@headlessui/react'
@@ -7,16 +7,19 @@ import {
   Bars3Icon,
   FireIcon,
   CalendarDaysIcon,
+  ListBulletIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
 import NBALive from "./pages/nba_live";
-import NBAMatches from "./pages/nba_matches";
+import NBASchedule from "./pages/nba_schedule";
+import NBAStandings from "./pages/nba_standings";
 
 const products = [
-  { name: 'Live', description: 'Matches for today', href: '/nba/live', icon: FireIcon },
-  { name: 'Matches', description: 'Explore past and future matches', href: '/nba/matches', icon: CalendarDaysIcon },
+  { name: 'Live', description: 'Latest games', href: '/nba/live', icon: FireIcon, style: "h-6 w-6 text-gray-600 group-hover:text-orange-700" },
+  { name: 'Schedule', description: 'Past and future games', href: '/nba/schedule', icon: CalendarDaysIcon, style: "h-6 w-6 text-gray-600 group-hover:text-blue-700" },
+  { name: 'Standings', description: 'League standings', href: '/nba/standings', icon: ListBulletIcon, style: "h-6 w-6 text-gray-600 group-hover:text-emerald-700" },
 ]
 
 function classNames(...classes) {
@@ -27,8 +30,8 @@ export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className="bg-white">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+    <header class="bg-white sticky top-0 z-50">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8 sticky top-0 bg-white" aria-label="Global">
         <div className="flex lg:flex-1">
           <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Rudscore</span>
@@ -69,7 +72,7 @@ export default function Example() {
                       className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
                     >
                       <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                        <item.icon className="h-6 w-6 text-gray-600 group-hover:text-blue-700" aria-hidden="true" />
+                        <item.icon className={item.style} aria-hidden="true" />
                       </div>
                       <div className="flex-auto">
                         <a href={item.href} className="block font-semibold text-gray-900">
@@ -152,8 +155,9 @@ export default function Example() {
       </Dialog>
       <BrowserRouter>
         <Routes>
-          <Route path="/nba/live" element={<NBALive/>}/>
-          <Route path="/nba/matches" element={<NBAMatches/>}/>
+          <Route path="/nba/live" element={<NBALive />} />
+          <Route path="/nba/schedule" element={<NBASchedule />} />
+          <Route path="/nba/standings" element={<NBAStandings />} />
         </Routes>
       </BrowserRouter>
     </header>

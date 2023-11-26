@@ -23,3 +23,8 @@ app.add_middleware(
 @app.get("/nba/live_scoreboard")
 async def live_scoreboard():
     return NBAProcessor.get_live_scoreboard()
+
+
+@app.get("/nba/standings")
+async def standings():
+    return NBAProcessor.get_league_standings()

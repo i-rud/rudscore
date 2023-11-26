@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 export default function NBALive() {
-    const url = 'http://localhost:8000/nba/live_scoreboard'
+    const url = 'http://localhost:8001/nba/live_scoreboard'
     const [games, setGames] = useState([])
 
 
