@@ -1,1 +1,1 @@
-![livescoreboard](https://github.com/i-rud/rudscore/assets/69870100/2e1911ce-dd8c-4f71-ac84-160d33823ad7)
+![livescoreboard](https://github.com/i-rud/rudscore/assets/69870100/fc74f40e-0cf6-4493-848b-a503cae6ac23)
