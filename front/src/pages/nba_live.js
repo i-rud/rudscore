@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+import Header from '../components/Header'
+
 export default function NBALive() {
     const url = 'http://localhost:8001/nba/live_scoreboard'
     const [games, setGames] = useState([])
@@ -17,6 +19,7 @@ export default function NBALive() {
 
     return (
         <>
+            <Header />
             <main className="grid place-items-center bg-white px-6 py-4 sm:py-24 lg:px-8">
                 <div className="text-center">
                     {games.map((game, index) => {
@@ -35,9 +38,9 @@ export default function NBALive() {
                                     <div>
                                         <span class="leading-7 text-gray-600 text-xs">{game.gameTimestamp}</span>
                                         <br></br>
-                                        <span className="mt-4 text-3xl font-semibold font-sans tracking-tight text-gray-900 sm:text-2xl">{game.homeTeam.score} : {game.awayTeam.score}</span>
+                                        <span className="mt-4 text-3xl font-semibold font-sans tracking-tight text-gray-900 sm:text-2xl">{game.gameStatus !== 1 ? (game.homeTeam.score + " : " + game.awayTeam.score) : ("TBD")}</span>
                                         <br></br>
-                                        <span class="leading-7 text-gray-600 text-xs">{game.gameStatusText}</span>
+                                        <span class="leading-7 text-gray-600 text-xs">{game.gameStatus !== 1 ? (game.gameStatusText) : ("")}</span>
                                     </div>
                                     <div>
                                         <img class="h-20 py-2 pr-4 ml-8" src={`https://cdn.nba.com/logos/nba/${game.awayTeam.teamId}/global/L/logo.svg`} alt="" />

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+import Header from '../components/Header'
+
 export default function NBAMatches() {
     const url = 'http://localhost:8001/nba/standings'
     const [standings, setStandings] = useState([])
@@ -17,6 +19,7 @@ export default function NBAMatches() {
 
     return (
         <>
+            <Header />
             <main className="grid place-items-center bg-white px-6 py-4 sm:py-20 lg:px-8">
                 <div className="text-center">
                     <div class="bg-slate-100 font-semibold">
