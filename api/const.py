@@ -1,6 +1,7 @@
 # Originals
 GAME_ID = "gameId"
 GAME_STATUS = "gameStatus"
+GAME_STATUS_TEXT = "gameStatusText"
 GAME_ET = "gameEt"
 HOME_TEAM = "homeTeam"
 AWAY_TEAM = "awayTeam"
