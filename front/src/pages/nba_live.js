@@ -3,18 +3,13 @@ import React, { useState, useEffect } from 'react';
 import Header from '../components/Header'
 
 export default function NBALive() {
-    const url = 'http://localhost:8001/nba/live_scoreboard'
+    const url = 'http://localhost:8000/nba/live_scoreboard'
     const [games, setGames] = useState([])
 
-
-    const fetchInfo = () => {
-        return fetch(url)
+    useEffect(() => {
+        fetch(url)
             .then((res) => res.json())
             .then((d) => setGames(d))
-    }
-
-    useEffect(() => {
-        fetchInfo();
     }, []);
 
     return (
@@ -24,7 +19,7 @@ export default function NBALive() {
                 <div className="text-center">
                     {games.map((game, index) => {
                         return (
-                            <div class="border-b border-gray-200 hover:border-blue-700 hover:border-b-2 hover:bg-neutral-50">
+                            <div class={`border-gray-200 ${game.gameStatus === 2 ? ("border-red-500 border-b-2") : ("border-gray-200 border-b")} hover:border-blue-700 hover:border-b-2 hover:bg-neutral-50`}>
                                 <div class="grid grid-cols-5 gap-10 place-items-center h-40">
                                     <div class="py-4">
                                         <span class="leading-7 text-gray-800 text-lg">{game.homeTeam.team}</span>
@@ -38,7 +33,7 @@ export default function NBALive() {
                                     <div>
                                         <span class="leading-7 text-gray-600 text-xs">{game.gameTimestamp}</span>
                                         <br></br>
-                                        <span className="mt-4 text-3xl font-semibold font-sans tracking-tight text-gray-900 sm:text-2xl">{game.gameStatus !== 1 ? (game.homeTeam.score + " : " + game.awayTeam.score) : ("TBD")}</span>
+                                        <span className={`mt-4 text-3xl font-semibold font-sans tracking-tight ${game.gameStatus === 2 ? ("text-red-500") : ("text-gray-900")} sm:text-2xl`}>{game.gameStatus !== 1 ? (game.homeTeam.score + " : " + game.awayTeam.score) : ("TBD")}</span>
                                         <br></br>
                                         <span class="leading-7 text-gray-600 text-xs">{game.gameStatus !== 1 ? (game.gameStatusText) : ("")}</span>
                                     </div>

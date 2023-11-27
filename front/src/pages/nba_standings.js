@@ -3,9 +3,8 @@ import React, { useState, useEffect } from 'react';
 import Header from '../components/Header'
 
 export default function NBAMatches() {
-    const url = 'http://localhost:8001/nba/standings'
+    const url = 'http://localhost:8000/nba/standings'
     const [standings, setStandings] = useState([])
-
 
     const fetchInfo = () => {
         return fetch(url)

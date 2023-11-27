@@ -9,8 +9,8 @@ class TeamData(BaseModel):
     team_name: str = Field(alias=const.TEAM_NAME, exclude=True)
     team_city: str = Field(alias=const.TEAM_CITY, exclude=True)
     score: int
-    wins: int
-    losses: int
+    wins: int = Field(default=-1)
+    losses: int = Field(default=-1)
 
     @computed_field
     def team(self) -> str:
