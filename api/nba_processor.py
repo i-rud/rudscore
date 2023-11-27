@@ -83,28 +83,3 @@ class NBAProcessor:
             schedule.append(GameShortSummary(**game_summary).model_dump(by_alias=True, mode="json"))
 
         return schedule
-
-    @staticmethod
-    def get_game_boxscore(game_id):
-        game_box_score = BoxScoreTraditionalV2(game_id=game_id).get_dict()
-
-        data_set = game_box_score["resultSets"][1]
-
-        boxscore_df = pd.DataFrame(columns=data_set["headers"], data=data_set["rowSet"])
-        boxscore = boxscore_df[
-            [const.TEAM_ID_SCHEDULE, const.TEAM_CITY_SCHEDULE, const.TEAM_NAME_SCHEDULE, const.PTS_SCHEDULE]
-        ].to_dict("records")
-
-        return boxscore
-
-    @staticmethod
-    def get_team_name_and_city(team_id) -> tuple[str, str]:
-        team1_name = TeamDetails(team_id=team_id).get_dict()
-        data_set = team1_name["resultSets"][0]
-
-        team_info_df = pd.DataFrame(columns=data_set["headers"], data=data_set["rowSet"])
-        team_info = team_info_df[
-            [const.TEAM_INFO_CITY_SCHEDULE, const.TEAM_INFO_NICKNAME_SCHEDULE]
-        ].to_dict("records")
-
-        return team_info[0][const.TEAM_INFO_CITY_SCHEDULE], team_info[0][const.TEAM_INFO_NICKNAME_SCHEDULE]
